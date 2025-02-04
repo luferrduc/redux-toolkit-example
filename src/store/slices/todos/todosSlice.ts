@@ -1,4 +1,4 @@
-import { RootState } from '@/store/store'
+// import { RootState } from '@/store/store'
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
@@ -29,5 +29,5 @@ export const todoSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const { add } = todoSlice.actions
-export const selectTodo = (state: RootState) => state.todos
+// export const selectTodo = (state: RootState) => state.todos
 // export default counterSlice.reducer
