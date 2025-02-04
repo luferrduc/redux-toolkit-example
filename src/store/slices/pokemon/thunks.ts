@@ -6,7 +6,7 @@ import { PokeAPIData } from "./types"
 import { pokemonApi } from "@/api/pokemonApi"
 
 
-export const getPokemons = (page: number = 0 ) => {
+export const getPokemons = (page: number = 1 ) => {
   return async (dispatch: AppDispatch, getState: () => RootState) => {
     dispatch(startLoadingPokemons())
 
@@ -14,11 +14,16 @@ export const getPokemons = (page: number = 0 ) => {
 
     // const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=10&offset=${ page * 10}`)
     // const data = await response.json() as PokeAPIData
-    const { data } = await pokemonApi.get<PokeAPIData>(`pokemon?limit=10&offset=${ page * 10}`)
+    const { data } = await pokemonApi.get<PokeAPIData>(`pokemon?limit=10&offset=${ (page - 1) * 10}`)
 
     const { results: pokemons } = data
 
 
-    dispatch( setPokemons({ pokemons, page: page + 1 }) )
+    dispatch( setPokemons({ pokemons, page: page }) )
+
+    // setTimeout(() => {
+
+    //   dispatch( setPokemons({ pokemons, page: page }) )
+    // }, 2000)
   }
 }
